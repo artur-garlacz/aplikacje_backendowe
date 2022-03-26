@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class FileSaver {

@@ -1,13 +1,12 @@
 package com.company;
 
-import java.util.logging.Logger;
-
 public class CRC32Calculator {
     private static int[] crc_table = new int[256];
     public static void main(String[] args) {
         InitTable();
 
         System.out.println(GetCRC32("This is example text ..."));
+        System.out.println(-821227708 >>> 0);
     }
 
     public static void InitTable(){
