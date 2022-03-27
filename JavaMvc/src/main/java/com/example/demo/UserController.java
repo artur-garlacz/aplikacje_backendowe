@@ -1,21 +1,23 @@
 package com.example.demo;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
-public class HomeController {
+import java.util.HashMap;
 
-    @RequestMapping("/")
+public class UserController {
+
+//    private Map<Integer, UserEntity> = new HashMap({});
+
+    @RequestMapping("/users")
     @ResponseBody
-    public String index() {
-        return "Hello World!";
+    public String users() {
+        return "ss";
     }
 
-    @RequestMapping("/user/{id}")
+    @RequestMapping("/user/{id}/get")
     @ResponseBody
     public UserEntity user(
             @PathVariable Long id,
@@ -26,15 +28,5 @@ public class HomeController {
         UserEntity userEntity = new UserEntity(id, name, age);
 
         return userEntity;
-    }
-
-    @RequestMapping("/example")
-    public String example(
-            @RequestParam Integer wariant
-    ) {
-        if(wariant == 2){
-            return "test";
-        }
-        return "example";
     }
 }
