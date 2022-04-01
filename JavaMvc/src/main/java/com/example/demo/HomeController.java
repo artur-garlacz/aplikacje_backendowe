@@ -15,18 +15,18 @@ public class HomeController {
         return "Hello World!";
     }
 
-    @RequestMapping("/user/{id}")
-    @ResponseBody
-    public UserEntity user(
-            @PathVariable Long id,
-            @RequestParam String name,
-            @RequestParam(defaultValue = "5") Integer age
-    ) {
-
-        UserEntity userEntity = new UserEntity(id, name, age);
-
-        return userEntity;
-    }
+//    @RequestMapping("/user/{id}")
+//    @ResponseBody
+//    public UserEntity user(
+//            @PathVariable Long id,
+//            @RequestParam String name,
+//            @RequestParam(defaultValue = "5") Integer age
+//    ) {
+//
+//        UserEntity userEntity = new UserEntity(id, name, age);
+//
+//        return userEntity;
+//    }
 
     @RequestMapping("/example")
     public String example(
