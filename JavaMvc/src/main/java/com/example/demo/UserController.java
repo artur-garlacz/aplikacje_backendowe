@@ -14,60 +14,39 @@ import java.util.Map;
 @Controller
 public class UserController {
 
-    private HashMap<Integer, UserEntity> userList = new HashMap<Integer, UserEntity>(){{
-            put(1, new UserEntity(1L, "Artur", 22));
+    private HashMap<Long, UserEntity> userList = new HashMap<Long, UserEntity>(){{
+        put(1L, new UserEntity(1L, "Artur", 22));
+        put(2L, new UserEntity(2L, "Natalia", 23));
+        put(3L, new UserEntity(3L, "Julia", 17));
     }};
 
     @RequestMapping("/users")
     @ResponseBody
-    public String users() {
-
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String usersJson = mapper.writeValueAsString(userList);
-            return usersJson;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return "Not found";
-        }
+    public HashMap<Long, UserEntity> users() {
+        return userList;
     }
 
     @RequestMapping("/user/{id}/get")
     @ResponseBody
-    public String GetUser(
+    public UserEntity user(
             @PathVariable Long id
     ) {
 
-        UserEntity userEntity = userList.get(id);
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String userJson = mapper.writeValueAsString(userEntity);
-            return userJson;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return "Not found";
-        }
+        return userList.get(id);
     }
 
-    @RequestMapping("/user/{id}/add")
+    @RequestMapping("/users/add")
     @ResponseBody
-    public String RemoveUser(
+    public UserEntity RemoveUser(
             @RequestParam String name,
             @RequestParam Integer age
     ) {
 
-        int userLength = userList.size() + 1;
-        UserEntity newUser = new UserEntity((long)userLength, name, age);
+        long userLength = userList.size() + 1;
+        UserEntity newUser = new UserEntity(userLength, name, age);
         userList.put(userLength, newUser);
 
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String userJson = mapper.writeValueAsString(newUser);
-            return userJson;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return "Not found";
-        }
+        return newUser;
     }
 
     @RequestMapping("/user/{id}/remove")
@@ -75,9 +54,12 @@ public class UserController {
     public String RemoveUser(
             @PathVariable Long id
     ) {
+        try {
+            userList.remove(id);
+        } catch (Exception e) {
+            return "Error while deleting users: " + e.getMessage();
+        }
 
-        userList.remove(id);
-
-        return "User has been deleted";
+        return "User with id: " + id + "has been deleted!";
     }
 }
