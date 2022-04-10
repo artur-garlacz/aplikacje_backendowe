@@ -37,7 +37,7 @@ public class UserController {
 
     @RequestMapping("/users/add")
     @ResponseBody
-    public UserEntity RemoveUser(
+    public UserEntity AddUser(
             @RequestParam String name,
             @RequestParam Integer age
     ) {

@@ -15,7 +15,17 @@ public class HomeController {
         return "Hello World!";
     }
 
-//    @RequestMapping("/user/{id}")
+    @RequestMapping("/example")
+    public String example(
+            @RequestParam Integer wariant
+    ) {
+        if(wariant == 2){
+            return "test";
+        }
+        return "example";
+    }
+
+    //    @RequestMapping("/user/{id}")
 //    @ResponseBody
 //    public UserEntity user(
 //            @PathVariable Long id,
@@ -27,14 +37,4 @@ public class HomeController {
 //
 //        return userEntity;
 //    }
-
-    @RequestMapping("/example")
-    public String example(
-            @RequestParam Integer wariant
-    ) {
-        if(wariant == 2){
-            return "test";
-        }
-        return "example";
-    }
 }
